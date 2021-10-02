@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private float currentHealth;
 
-    private Rigidbody2D enemyRb;
+    protected Rigidbody2D enemyRb;
 
     public virtual void Start()
     {

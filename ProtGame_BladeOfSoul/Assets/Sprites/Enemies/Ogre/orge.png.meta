@@ -1,55 +1,55 @@
 fileFormatVersion: 2
-guid: 010f04d2ae7a230458cb83965202dec8
+guid: 9d39c040452524d45bf441acf0d2cff4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2757298984738394219
-    second: NPC_test_0
+      213: -4753886741560322309
+    second: orge_0
   - first:
-      213: -3297999012176952179
-    second: NPC_test_1
+      213: -2955828394453855862
+    second: orge_1
   - first:
-      213: 109808345321430783
-    second: NPC_test_2
+      213: -2638942196184380687
+    second: orge_2
   - first:
-      213: -984706229473049029
-    second: NPC_test_3
+      213: -2338203481565794006
+    second: orge_3
   - first:
-      213: 4411923371137299535
-    second: NPC_test_4
+      213: 2094350663154829313
+    second: orge_4
   - first:
-      213: -7544729849536096197
-    second: NPC_test_5
+      213: 8930262238786865639
+    second: orge_5
   - first:
-      213: 3471414262902695032
-    second: NPC_test_6
+      213: -7597207668663345718
+    second: orge_6
   - first:
-      213: -5174125284999604879
-    second: NPC_test_7
+      213: -7839383391772302050
+    second: orge_7
   - first:
-      213: -6431366237039918707
-    second: NPC_test_8
+      213: 8627847960000431974
+    second: orge_8
   - first:
-      213: -8922353081226294202
-    second: NPC_test_9
+      213: 6119314509959758635
+    second: orge_9
   - first:
-      213: 6796940128468367395
-    second: NPC_test_10
+      213: -1898101141213099369
+    second: orge_10
   - first:
-      213: -1790513009360131488
-    second: NPC_test_11
+      213: 7927429830950459127
+    second: orge_11
   - first:
-      213: -8018767669905319889
-    second: NPC_test_12
+      213: 1571176116747660993
+    second: orge_12
   - first:
-      213: 7257679221847934946
-    second: NPC_test_13
+      213: -7336885778912179212
+    second: orge_13
   - first:
-      213: -1466947835845212873
-    second: NPC_test_14
+      213: -2034084172188926700
+    second: orge_14
   - first:
-      213: 8869442856293547957
-    second: NPC_test_15
+      213: -437835757249933894
+    second: orge_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -175,7 +175,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NPC_test_0
+      name: orge_0
       rect:
         serializedVersion: 2
         x: 1
@@ -189,14 +189,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59f6f13ae2b1cb9d0800000000000000
-      internalID: -2757298984738394219
+      spriteID: bf69bda123dc60eb0800000000000000
+      internalID: -4753886741560322309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_1
+      name: orge_1
       rect:
         serializedVersion: 2
         x: 17
@@ -210,14 +210,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d848a993f572b32d0800000000000000
-      internalID: -3297999012176952179
+      spriteID: a8190936cb9caf6d0800000000000000
+      internalID: -2955828394453855862
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_2
+      name: orge_2
       rect:
         serializedVersion: 2
         x: 33
@@ -231,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffed148bb1e168100800000000000000
-      internalID: 109808345321430783
+      spriteID: 1fa04a5ed08906bd0800000000000000
+      internalID: -2638942196184380687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_3
+      name: orge_3
       rect:
         serializedVersion: 2
         x: 49
@@ -252,14 +252,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b360528c6ee9552f0800000000000000
-      internalID: -984706229473049029
+      spriteID: a2170b462580d8fd0800000000000000
+      internalID: -2338203481565794006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_4
+      name: orge_4
       rect:
         serializedVersion: 2
         x: 2
@@ -273,14 +273,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f44f1e04eec4a3d30800000000000000
-      internalID: 4411923371137299535
+      spriteID: 1088270f4d0a01d10800000000000000
+      internalID: 2094350663154829313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_5
+      name: orge_5
       rect:
         serializedVersion: 2
         x: 18
@@ -294,14 +294,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b385d10fc2cbb4790800000000000000
-      internalID: -7544729849536096197
+      spriteID: 7e9c9fd013aaeeb70800000000000000
+      internalID: 8930262238786865639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_6
+      name: orge_6
       rect:
         serializedVersion: 2
         x: 34
@@ -315,14 +315,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8742a8831e0fc2030800000000000000
-      internalID: 3471414262902695032
+      spriteID: acd927880eb419690800000000000000
+      internalID: -7597207668663345718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_7
+      name: orge_7
       rect:
         serializedVersion: 2
         x: 50
@@ -336,14 +336,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1755b3c8770d138b0800000000000000
-      internalID: -5174125284999604879
+      spriteID: e15a05b075ae43390800000000000000
+      internalID: -7839383391772302050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_8
+      name: orge_8
       rect:
         serializedVersion: 2
         x: 1
@@ -357,14 +357,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d818bc47b723fb6a0800000000000000
-      internalID: -6431366237039918707
+      spriteID: 66787efd1064cb770800000000000000
+      internalID: 8627847960000431974
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_9
+      name: orge_9
       rect:
         serializedVersion: 2
         x: 17
@@ -378,14 +378,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64c05e0352f6d2480800000000000000
-      internalID: -8922353081226294202
+      spriteID: b238b03102c2ce450800000000000000
+      internalID: 6119314509959758635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_10
+      name: orge_10
       rect:
         serializedVersion: 2
         x: 33
@@ -399,14 +399,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32874fcf805935e50800000000000000
-      internalID: 6796940128468367395
+      spriteID: 79aca32911798a5e0800000000000000
+      internalID: -1898101141213099369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_11
+      name: orge_11
       rect:
         serializedVersion: 2
         x: 49
@@ -420,14 +420,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06aaf5f87e1d627e0800000000000000
-      internalID: -1790513009360131488
+      spriteID: 7f613af0e63e30e60800000000000000
+      internalID: 7927429830950459127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_12
+      name: orge_12
       rect:
         serializedVersion: 2
         x: 1
@@ -441,14 +441,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2818ea1a4d97b090800000000000000
-      internalID: -8018767669905319889
+      spriteID: 1ce625e8a50fdc510800000000000000
+      internalID: 1571176116747660993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_13
+      name: orge_13
       rect:
         serializedVersion: 2
         x: 17
@@ -462,14 +462,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e7caf7acc478b460800000000000000
-      internalID: 7257679221847934946
+      spriteID: 4fb035ea1452e2a90800000000000000
+      internalID: -7336885778912179212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_14
+      name: orge_14
       rect:
         serializedVersion: 2
         x: 33
@@ -483,14 +483,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7350b6c27ba54abe0800000000000000
-      internalID: -1466947835845212873
+      spriteID: 41d3f61f83b75c3e0800000000000000
+      internalID: -2034084172188926700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_test_15
+      name: orge_15
       rect:
         serializedVersion: 2
         x: 49
@@ -504,8 +504,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bfb0051947961b70800000000000000
-      internalID: 8869442856293547957
+      spriteID: abd4723d2be7ce9f0800000000000000
+      internalID: -437835757249933894
       vertices: []
       indices: 
       edges: []

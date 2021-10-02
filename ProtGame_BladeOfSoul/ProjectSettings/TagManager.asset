@@ -7,6 +7,9 @@ TagManager:
   - Breakable
   - Enemy
   - Sword
+  - EnemyAttack
+  - Heart
+  - HeartUp
   layers:
   - Default
   - TransparentFX
