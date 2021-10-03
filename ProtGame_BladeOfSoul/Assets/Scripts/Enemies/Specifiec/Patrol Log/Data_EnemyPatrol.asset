@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Data_EnemyPatrol
   m_EditorClassIdentifier: 
   maxHealth: 20
-  moveSpeed: 3
+  moveSpeed: 2
   damage: 0
