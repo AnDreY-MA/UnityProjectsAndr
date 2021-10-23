@@ -55,6 +55,6 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         //Debug.Log("End");
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

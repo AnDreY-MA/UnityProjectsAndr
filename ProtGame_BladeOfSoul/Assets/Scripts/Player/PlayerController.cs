@@ -10,10 +10,23 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("PlayerStats")]
     [SerializeField] private DataPlayer playerData;
     [SerializeField] private float knockForce;
     [SerializeField] private VectorValue startingPosition;
     [SerializeField] private HeartManager heartManager;
+    [SerializeField] private Camera sceneCamera;
+
+    [Header("Shooting")]
+    [SerializeField] private GameObject crosshair;
+    [SerializeField] private float crosshairDistance = 1.0f;
+    [SerializeField] private float arrowSpeed = 1.0f;
+    [SerializeField] private float shootingRecoil = 0f;
+    [SerializeField] private float shootRecoilTime = 1.0f;
+    //[SerializeField] private float aimingMoveSpeed = 0.5f;
+
+    [Header("Prefabs:")]
+    [SerializeField] private GameObject arrowPrefab;
 
     [Header("Frame Stuff")]
     [SerializeField] private Color flashColor;
@@ -22,12 +35,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int numberOfFlashes;
     [SerializeField] private Collider2D triggerCollider;
 
+    private float movementSpeed;
+
     public PlayerController player;
 
     private PlayerState currentState;
     private Rigidbody2D rbPlayer;
     private Animator animPlayer;
     private SpriteRenderer playerSprite;
+
+    private bool endOfAiming;
+    //private bool isAiming;
 
     public float currentHealth { get; set; }
 
@@ -36,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentHealth = playerData.maxHealth;
+        movementSpeed = playerData.maxSpeed;
         currentState = PlayerState.move;
         transform.position = startingPosition.initialValue;
         rbPlayer = GetComponent<Rigidbody2D>();
@@ -45,28 +64,25 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && currentState != PlayerState.attack)
-        {
-            StartCoroutine(AttackCo());
-        }
-
         if (currentState == PlayerState.move)
         {
             CheckMoveInput();
         }
 
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            SavePlayer();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-            LoadPlayer();
-        }
-
+        CheckSaveAndLoad();
+        CheckAttack();
         CheckDamage();
+        Aim();
+        CheckShooting();
+        Shoot();
+    }
 
+    private void CheckAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && currentState != PlayerState.attack)
+        {
+            StartCoroutine(AttackCo());
+        }
     }
 
     private void FixedUpdate()
@@ -111,6 +127,19 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    private void CheckSaveAndLoad()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            SavePlayer();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+            LoadPlayer();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -162,6 +191,50 @@ public class PlayerController : MonoBehaviour
         currentState = PlayerState.move;
     }
 
+    private void Aim()
+    {
+        if (direction != Vector3.zero)
+        {
+            crosshair.transform.localPosition = direction * crosshairDistance;
+        }
+    }
+
+    private void CheckShooting()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            endOfAiming = true;
+        }
+        else
+            endOfAiming = false;
+
+        if (endOfAiming)
+        {
+            shootingRecoil = shootRecoilTime;
+        }
+
+        if (shootingRecoil > 0.0f)
+            shootingRecoil -= Time.deltaTime;
+
+        /*if (Input.GetMouseButton(0))
+            isAiming = true;
+        else
+            isAiming = false;*/
+    }
+
+    private void Shoot()
+    {
+        Vector2 shootingDirection = crosshair.transform.localPosition;
+        shootingDirection.Normalize();
+
+        if (endOfAiming)
+        {
+            GameObject arrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity);
+            arrow.GetComponent<Rigidbody2D>().velocity = shootingDirection * arrowSpeed;
+            arrow.transform.Rotate(0, 0, Mathf.Atan2(shootingDirection.y, shootingDirection.x) * Mathf.Rad2Deg);
+            Destroy(arrow, 2.0f);
+        }
+    }
 
     private void CheckMoveInput()
     {
@@ -178,12 +251,19 @@ public class PlayerController : MonoBehaviour
         }
         else
             animPlayer.SetBool("isMoving", false);
+
+        /*if (isAiming)
+        {
+            movementSpeed *= aimingMoveSpeed;
+        }
+        else
+            movementSpeed = playerData.maxSpeed;*/
     }
 
 
     private void Movement()
     {
-        rbPlayer.MovePosition(transform.position + direction * playerData.maxSpeed * Time.deltaTime);
+        rbPlayer.MovePosition(transform.position + direction * movementSpeed * Time.deltaTime);
     }
 
 }

@@ -12,7 +12,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private float minX;
     [SerializeField] private float minY;
     [SerializeField] private float maxX;
-    [SerializeField] private float maxy;
+    [SerializeField] private float maxY;
 
     [Header("Patrolling")]
     [SerializeField] Transform[] path;
@@ -41,7 +41,7 @@ public class NPC : MonoBehaviour
         rbNPC = GetComponent<Rigidbody2D>();
         //dialogueObject = GameObject.Find("DialogueBox");
 
-        moveSpot.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxy));
+        moveSpot.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
 
     private void Update()
@@ -72,7 +72,7 @@ public class NPC : MonoBehaviour
         {
             if (waitTime <= 0)
             {
-                moveSpot.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxy));
+                moveSpot.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY));
                 waitTime = startWaitTime;
             }
             else
