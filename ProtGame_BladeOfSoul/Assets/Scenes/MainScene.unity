@@ -2159,7 +2159,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.8087559, y: 1}
+    m_SensorSize: {x: 2.9491525, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9479,7 +9479,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 11400000, guid: f2c54160314f4ed4b8152582f1135793,
+      objectReference: {fileID: 11400000, guid: daa10f50a91c511429ed57d3f743c1cb,
         type: 2}
     - target: {fileID: 7229441236255269527, guid: d6d9e9fb9475d804cb401e023f387782,
         type: 3}
@@ -9679,7 +9679,7 @@ PrefabInstance:
     - target: {fileID: 7337785722613521880, guid: 5acefe2b2de011747b3dacbb83022607,
         type: 3}
       propertyPath: fadeWait
-      value: 0.33
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 7337785722613521880, guid: 5acefe2b2de011747b3dacbb83022607,
         type: 3}

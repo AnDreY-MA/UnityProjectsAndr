@@ -92,19 +92,19 @@ public class PlayerController : MonoBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this);
+        SaveSystem.Save(this);
     }
 
     public void LoadPlayer()
     {
-        SavePlayerData data = SaveSystem.LoadPlayer();
+        SavePlayerData data = SaveSystem.Load();
 
-        currentHealth = data.health;
+        currentHealth = data.healthPlayer;
 
         Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
+        position.x = data.positionPlayer[0];
+        position.y = data.positionPlayer[1];
+        position.z = data.positionPlayer[2];
         transform.position = position;
 
     }
@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckShooting()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             endOfAiming = true;
         }
@@ -216,7 +216,7 @@ public class PlayerController : MonoBehaviour
         if (shootingRecoil > 0.0f)
             shootingRecoil -= Time.deltaTime;
 
-        /*if (Input.GetMouseButton(0))
+        /*if (Input.GetMouseButton(1))
             isAiming = true;
         else
             isAiming = false;*/
