@@ -92,12 +92,12 @@ public class PlayerController : MonoBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.Save(this);
+        SaveSystem.SavePlayer(this);
     }
 
     public void LoadPlayer()
     {
-        SavePlayerData data = SaveSystem.Load();
+        SavePlayerData data = SaveSystem.LoadPlayer();
 
         currentHealth = data.healthPlayer;
 

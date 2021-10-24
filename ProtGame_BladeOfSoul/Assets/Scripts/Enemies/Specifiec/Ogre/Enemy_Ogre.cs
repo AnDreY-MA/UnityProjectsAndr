@@ -28,8 +28,9 @@ public class Enemy_Ogre : Enemy
         enemyAnim = GetComponent<Animator>();
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         CheckDistance();
         CheckAttack();
     }

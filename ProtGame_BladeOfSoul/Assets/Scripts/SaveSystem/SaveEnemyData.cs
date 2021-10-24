@@ -12,6 +12,6 @@ public class SaveEnemyData
         positionEnemy = new float[3];
         positionEnemy[0] = enemy.transform.position.x;
         positionEnemy[1] = enemy.transform.position.y;
-        positionEnemy[3] = enemy.transform.position.z;
+        positionEnemy[2] = enemy.transform.position.z;
     }
 }
