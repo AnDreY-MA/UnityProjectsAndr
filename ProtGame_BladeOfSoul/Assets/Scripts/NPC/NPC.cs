@@ -21,8 +21,8 @@ public class NPC : MonoBehaviour
 
     [Header("DialogueSystem")]
     [SerializeField] private GameObject dialogueObject;
-    [SerializeField] private DialogueTrigger dialogueTrigger;
-    [SerializeField] private DialogueManager dialogueManager;
+    //[SerializeField] private DialogueTrigger dialogueTrigger;
+    //[SerializeField] private DialogueManager dialogueManager;
 
     private Transform currentGoal;
 
@@ -56,16 +56,16 @@ public class NPC : MonoBehaviour
         if (canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveSpot.position, speed * Time.deltaTime);
-            dialogueObject.SetActive(false);
+            //dialogueObject.SetActive(false);
         }
         if (!canMove || Input.GetKeyDown(KeyCode.F))
         {
             transform.position = Vector3.MoveTowards(transform.position, moveSpot.position, 0);
-            dialogueObject.SetActive(true);
-            dialogueTrigger.TriggerDialogue();
+            //dialogueObject.SetActive(true);
+            //dialogueTrigger.TriggerDialogue();
         }
         if (Input.GetKeyDown(KeyCode.Space))
-            dialogueManager.DisplayNextSentence();
+            //dialogueManager.DisplayNextSentence();
             
 
         if (Vector3.Distance(transform.position, moveSpot.position) < 0.2f)

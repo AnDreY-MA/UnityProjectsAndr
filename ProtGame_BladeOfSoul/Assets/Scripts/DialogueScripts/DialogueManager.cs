@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -10,7 +10,9 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
-    public void Start()
+    public bool isEndDialogue { get; private set; }
+
+    private void Start()
     {
         sentences = new Queue<string>();
     }
@@ -23,7 +25,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (string sentence in dialogue.sentences)
         {
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(sentence); //Добавление в конец очереди
         }
 
         DisplayNextSentence();
@@ -37,9 +39,9 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        string sentence = sentences.Dequeue();
+        string sentence = sentences.Dequeue(); //Возвращение первого элемента в очереди
+        StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
-        //dialogueText.text = sentence;
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -52,9 +54,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void EndDialogue()
+    public void EndDialogue()
     {
-        //Debug.Log("End");
-        gameObject.SetActive(false);
+        Debug.Log("End");
+        isEndDialogue = true;
     }
 }
