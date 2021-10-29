@@ -7,10 +7,11 @@ public class DialogueManager : MonoBehaviour
 {
     public Text nameText;
     public Text dialogueText;
+    [SerializeField] GameObject objectDialogBox;
+    [SerializeField] Animator animDialog;
 
     private Queue<string> sentences;
 
-    public bool isEndDialogue { get; private set; }
 
     private void Start()
     {
@@ -19,6 +20,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        objectDialogBox.SetActive(true);
+        animDialog.SetBool("isOpen", true);
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -35,7 +38,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 0)
         {
-            EndDialogue();
+            animDialog.SetBool("isOpen", false);
+            Invoke("EndDialogue", 1.0f);
             return;
         }
 
@@ -57,6 +61,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         Debug.Log("End");
-        isEndDialogue = true;
+        //animDialog.SetBool("isOpen", false);
+        objectDialogBox.SetActive(false);
     }
 }

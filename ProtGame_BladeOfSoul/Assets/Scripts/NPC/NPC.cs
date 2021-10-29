@@ -21,8 +21,8 @@ public class NPC : MonoBehaviour
 
     [Header("DialogueSystem")]
     [SerializeField] private GameObject dialogueObject;
-    //[SerializeField] private DialogueTrigger dialogueTrigger;
-    //[SerializeField] private DialogueManager dialogueManager;
+    [SerializeField] private DialogueTrigger dialogueTrigger;
+    [SerializeField] private DialogueManager dialogueManager;
 
     private Transform currentGoal;
 
@@ -32,6 +32,7 @@ public class NPC : MonoBehaviour
     private float waitTime;
 
     private bool canMove;
+    private bool isSpeaking;
 
     private void Start()
     {
@@ -39,7 +40,7 @@ public class NPC : MonoBehaviour
         currentSpeed = speed;
         waitTime = startWaitTime;
         rbNPC = GetComponent<Rigidbody2D>();
-        //dialogueObject = GameObject.Find("DialogueBox");
+        dialogueObject = GameObject.Find("DialogueBox");
 
         moveSpot.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
@@ -56,16 +57,14 @@ public class NPC : MonoBehaviour
         if (canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveSpot.position, speed * Time.deltaTime);
-            //dialogueObject.SetActive(false);
         }
         if (!canMove || Input.GetKeyDown(KeyCode.F))
         {
             transform.position = Vector3.MoveTowards(transform.position, moveSpot.position, 0);
-            //dialogueObject.SetActive(true);
-            //dialogueTrigger.TriggerDialogue();
+            dialogueTrigger.TriggerDialogue();
         }
         if (Input.GetKeyDown(KeyCode.Space))
-            //dialogueManager.DisplayNextSentence();
+            dialogueManager.DisplayNextSentence();
             
 
         if (Vector3.Distance(transform.position, moveSpot.position) < 0.2f)
@@ -80,16 +79,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void Patroling()
-    {
-        if (Vector3.Distance(transform.position, path[currentPoint].position) > roundingDistance)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, path[currentPoint].position, speed * Time.deltaTime);
-
-        }
-        else
-            ChangeGoal();
-    }
+    
 
     private void ChangeGoal()
     {
