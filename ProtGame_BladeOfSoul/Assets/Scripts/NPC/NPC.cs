@@ -21,8 +21,6 @@ public class NPC : MonoBehaviour
 
     [Header("DialogueSystem")]
     [SerializeField] private GameObject dialogueObject;
-    [SerializeField] private DialogueTrigger dialogueTrigger;
-    [SerializeField] private DialogueManager dialogueManager;
 
     private Transform currentGoal;
 
@@ -32,7 +30,6 @@ public class NPC : MonoBehaviour
     private float waitTime;
 
     private bool canMove;
-    private bool isSpeaking;
 
     private void Start()
     {
@@ -40,7 +37,6 @@ public class NPC : MonoBehaviour
         currentSpeed = speed;
         waitTime = startWaitTime;
         rbNPC = GetComponent<Rigidbody2D>();
-        dialogueObject = GameObject.Find("DialogueBox");
 
         moveSpot.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
@@ -48,8 +44,11 @@ public class NPC : MonoBehaviour
     private void Update()
     {
         ProtPatrol();
-        //Patroling();
     }
+
+    public void ActivateDialogue() { dialogueObject.SetActive(true); }
+
+    public bool DialogueActive() { return dialogueObject.activeInHierarchy; }     
 
     #region Patrol 
     private void ProtPatrol()
@@ -61,11 +60,7 @@ public class NPC : MonoBehaviour
         if (!canMove || Input.GetKeyDown(KeyCode.F))
         {
             transform.position = Vector3.MoveTowards(transform.position, moveSpot.position, 0);
-            dialogueTrigger.TriggerDialogue();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-            dialogueManager.DisplayNextSentence();
-            
+        }            
 
         if (Vector3.Distance(transform.position, moveSpot.position) < 0.2f)
         {

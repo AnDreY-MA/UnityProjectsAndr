@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float knockForce;
     [SerializeField] private VectorValue startingPosition;
     [SerializeField] private HeartManager heartManager;
-    [SerializeField] private Camera sceneCamera;
 
     [Header("Shooting")]
     [SerializeField] private GameObject crosshair;
@@ -51,6 +50,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 direction;
 
+    private NPC npc;
+
     private void Start()
     {
         currentHealth = playerData.maxHealth;
@@ -77,36 +78,49 @@ public class PlayerController : MonoBehaviour
         Shoot();
     }
 
+    private void FixedUpdate()
+    {
+        Movement();
+    }
+
+    #region Dialogue
+    private bool InDialogue()
+    {
+        if (npc != null)
+            return npc.DialogueActive();
+        else
+            return false;
+    }
+  
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "NPC")
+        {
+            npc = collision.gameObject.GetComponent<NPC>();
+
+            if (Input.GetKey(KeyCode.F))
+            {
+                npc.GetComponent<NPC>().ActivateDialogue();
+                movementSpeed = 0;
+            }
+            else
+                movementSpeed = playerData.maxSpeed;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        npc = null;
+    }
+    #endregion
+
+    #region Checks
     private void CheckAttack()
     {
         if (Input.GetKeyDown(KeyCode.E) && currentState != PlayerState.attack)
         {
             StartCoroutine(AttackCo());
         }
-    }
-
-    private void FixedUpdate()
-    {
-        Movement();       
-    }
-
-    public void SavePlayer()
-    {
-        SaveSystem.SavePlayer(this);
-    }
-
-    public void LoadPlayer()
-    {
-        SavePlayerData data = SaveSystem.LoadPlayer();
-
-        currentHealth = data.healthPlayer;
-
-        Vector3 position;
-        position.x = data.positionPlayer[0];
-        position.y = data.positionPlayer[1];
-        position.z = data.positionPlayer[2];
-        transform.position = position;
-
     }
 
     private void CheckDamage()
@@ -140,6 +154,66 @@ public class PlayerController : MonoBehaviour
         {
             LoadPlayer();
         }
+    }
+
+    private void CheckShooting()
+    {
+        if (Input.GetMouseButtonUp(1))
+            endOfAiming = true;
+        else
+            endOfAiming = false;
+
+        if (endOfAiming)
+            shootingRecoil = shootRecoilTime;
+
+        if (shootingRecoil > 0.0f)
+            shootingRecoil -= Time.deltaTime;
+
+        /*if (Input.GetMouseButton(1))
+            isAiming = true;
+        else
+            isAiming = false;*/
+    }
+
+    private void CheckMoveInput()
+    {
+        if (!InDialogue())
+        {
+            direction = Vector3.zero;
+            direction.x = Input.GetAxisRaw("Horizontal");
+            direction.y = Input.GetAxisRaw("Vertical");
+
+            if (direction != Vector3.zero)
+            {
+                //Movement();
+                animPlayer.SetFloat("moveX", direction.x);
+                animPlayer.SetFloat("moveY", direction.y);
+                animPlayer.SetBool("isMoving", true);
+            }
+            else
+                animPlayer.SetBool("isMoving", false);
+        }
+    }
+
+    #endregion
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        SavePlayerData data = SaveSystem.LoadPlayer();
+
+        currentHealth = data.healthPlayer;
+
+        Vector3 position;
+        position.x = data.positionPlayer[0];
+        position.y = data.positionPlayer[1];
+        position.z = data.positionPlayer[2];
+        transform.position = position;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -199,29 +273,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void CheckShooting()
-    {
-        if (Input.GetMouseButtonUp(1))
-        {
-            endOfAiming = true;
-        }
-        else
-            endOfAiming = false;
-
-        if (endOfAiming)
-        {
-            shootingRecoil = shootRecoilTime;
-        }
-
-        if (shootingRecoil > 0.0f)
-            shootingRecoil -= Time.deltaTime;
-
-        /*if (Input.GetMouseButton(1))
-            isAiming = true;
-        else
-            isAiming = false;*/
-    }
-
     private void Shoot()
     {
         Vector2 shootingDirection = crosshair.transform.localPosition;
@@ -235,31 +286,6 @@ public class PlayerController : MonoBehaviour
             Destroy(arrow, 2.0f);
         }
     }
-
-    private void CheckMoveInput()
-    {
-        direction = Vector3.zero;
-        direction.x = Input.GetAxisRaw("Horizontal");
-        direction.y = Input.GetAxisRaw("Vertical");
-
-        if (direction != Vector3.zero)
-        {
-            //Movement();
-            animPlayer.SetFloat("moveX", direction.x);
-            animPlayer.SetFloat("moveY", direction.y);
-            animPlayer.SetBool("isMoving", true);
-        }
-        else
-            animPlayer.SetBool("isMoving", false);
-
-        /*if (isAiming)
-        {
-            movementSpeed *= aimingMoveSpeed;
-        }
-        else
-            movementSpeed = playerData.maxSpeed;*/
-    }
-
 
     private void Movement()
     {
