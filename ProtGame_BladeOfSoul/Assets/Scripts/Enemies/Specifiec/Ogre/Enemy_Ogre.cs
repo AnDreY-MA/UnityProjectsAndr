@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyState
-{
-    walking,
-    attacking
-}
 
 public class Enemy_Ogre : Enemy
 {
-    [SerializeField] private Transform target;
+     private Transform target;
     [SerializeField] private float chaseRadius;
     [SerializeField] private float attackRadius;
     [SerializeField] private float delayBetweenAttack;
-
-    private EnemyState ogreState;
 
     private Animator enemyAnim;
 
@@ -58,7 +51,6 @@ public class Enemy_Ogre : Enemy
 
     private IEnumerator AttackCo()
     {
-        ogreState = EnemyState.attacking;
         yield return new WaitForSeconds(delayBetweenAttack);
         enemyAnim.SetBool("isAttack", true);
         yield return new WaitForSeconds(0.5f);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum PlayerState
 {
@@ -13,8 +14,10 @@ public class PlayerController : MonoBehaviour
     [Header("PlayerStats")]
     [SerializeField] private DataPlayer playerData;
     [SerializeField] private float knockForce;
+    [SerializeField] private float dashAmount = 50.0f;
     [SerializeField] private VectorValue startingPosition;
     [SerializeField] private HeartManager heartManager;
+    
 
     [Header("Shooting")]
     [SerializeField] private GameObject crosshair;
@@ -44,14 +47,21 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer playerSprite;
 
     private bool endOfAiming;
+    private bool isDash;
     //private bool isAiming;
 
     public float currentHealth { get; set; }
 
+    public bool isDead { get; private set; }
+
     private Vector3 direction;
+    //private Vector2 mousePos;
+
+    //private Camera camera;
 
     private NPC npc;
 
+    
     private void Start()
     {
         currentHealth = playerData.maxHealth;
@@ -61,25 +71,32 @@ public class PlayerController : MonoBehaviour
         rbPlayer = GetComponent<Rigidbody2D>();
         animPlayer = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
+        isDead = false;
     }
 
     private void Update()
     {
+        //mousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+
         if (currentState == PlayerState.move)
         {
             CheckMoveInput();
         }
-
+        //CheckMouse();
         CheckSaveAndLoad();
         CheckAttack();
         CheckDamage();
+        CheckDash();
         Aim();
         CheckShooting();
         Shoot();
+
+        //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void FixedUpdate()
     {
+       
         Movement();
     }
 
@@ -139,7 +156,11 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            isDead = true;
         }
+
+        if (isDead)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
@@ -159,10 +180,12 @@ public class PlayerController : MonoBehaviour
     private void CheckShooting()
     {
         if (Input.GetMouseButtonUp(1))
+        {
             endOfAiming = true;
+        }
         else
             endOfAiming = false;
-
+        
         if (endOfAiming)
             shootingRecoil = shootRecoilTime;
 
@@ -193,6 +216,22 @@ public class PlayerController : MonoBehaviour
             else
                 animPlayer.SetBool("isMoving", false);
         }
+    }
+
+    private void CheckDash()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            isDash = true;
+        else
+            isDash = false;
+    }
+
+    private void CheckMouse()
+    {
+        Vector3 mouseMovement = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        direction += mouseMovement;
+        direction.Normalize();
+
     }
 
     #endregion
@@ -289,7 +328,12 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        rbPlayer.MovePosition(transform.position + direction * movementSpeed * Time.deltaTime);
+        if (!isDash)
+        {
+            rbPlayer.MovePosition(transform.position + direction * movementSpeed * Time.deltaTime);
+        }
+        else
+            rbPlayer.MovePosition(transform.position + direction * dashAmount * Time.deltaTime);
     }
 
 }

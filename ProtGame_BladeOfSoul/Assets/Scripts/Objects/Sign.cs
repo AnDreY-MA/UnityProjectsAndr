@@ -18,7 +18,11 @@ public class Sign : MonoBehaviour
             if (dialogBox.activeInHierarchy)
                 dialogBox.SetActive(false);
             else
+            {
                 dialogBox.SetActive(true);
+                dialogText.text = dialog;
+            }
+                
         }
     }
 
