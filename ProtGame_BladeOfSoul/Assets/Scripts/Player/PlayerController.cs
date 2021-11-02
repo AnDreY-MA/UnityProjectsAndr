@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
         Movement();
     }
 
@@ -236,6 +235,8 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region SaveAndLoad
+
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
@@ -254,6 +255,8 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
 
     }
+
+    #endregion
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -277,6 +280,8 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    #region Fight
 
     private IEnumerator FlashCo()
     {
@@ -325,6 +330,8 @@ public class PlayerController : MonoBehaviour
             Destroy(arrow, 2.0f);
         }
     }
+
+    #endregion
 
     private void Movement()
     {
