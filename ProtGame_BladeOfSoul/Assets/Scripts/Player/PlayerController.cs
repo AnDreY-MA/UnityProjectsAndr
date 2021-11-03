@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
     #region Checks
     private void CheckAttack()
     {
-        if (Input.GetKeyDown(KeyCode.E) && currentState != PlayerState.attack)
+        if (Input.GetMouseButtonDown(0) && currentState != PlayerState.attack)
         {
             StartCoroutine(AttackCo());
         }

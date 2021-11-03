@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: -0.366, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8317146659206485500}
   m_RootOrder: 0
@@ -66,11 +67,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8317146659206485500}
-  - component: {fileID: 8317146659206485443}
   - component: {fileID: 8317146659206485503}
   - component: {fileID: 8317146659206485502}
   - component: {fileID: 8317146659206485441}
   - component: {fileID: 8317146659206485440}
+  - component: {fileID: 4849783899560838662}
   m_Layer: 0
   m_Name: EnemyOgre
   m_TagString: Enemy
@@ -85,9 +86,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8317146659206485442}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.5, y: 4.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8317146659099136658}
   - {fileID: 8317146660439468860}
@@ -96,24 +98,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8317146659206485443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8317146659206485442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5428b690737c5147b712501717cafcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityData: {fileID: 11400000, guid: 61170582d4021174f9b2c6bfb89bee91, type: 2}
-  knockForce: 3
-  target: {fileID: 0}
-  chaseRadius: 5
-  attackRadius: 1
-  delayBetweenAttack: 0
 --- !u!212 &8317146659206485503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -169,7 +153,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &8317146659206485502
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -182,6 +166,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -233,6 +218,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.96146536, y: 0.6718054}
   m_EdgeRadius: 0
+--- !u!114 &4849783899560838662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8317146659206485442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1530172f036646d40bb2a748e73a6a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedEnemy: 0
+  knockForce: 0
+  chaseRadius: 0
+  attackRadius: 0
 --- !u!1 &8317146660439468863
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +261,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.257, y: -0.148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8317146659206485500}
   m_RootOrder: 1
@@ -317,6 +319,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.197, y: -0.187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8317146659206485500}
   m_RootOrder: 2
@@ -374,6 +377,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.082, y: 0.471, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8317146659206485500}
   m_RootOrder: 3
