@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,8 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private DataPlayer playerData;
     [SerializeField] private float knockForce;
     [SerializeField] private float dashAmount = 50.0f;
-    [SerializeField] private VectorValue startingPosition;
     [SerializeField] private HeartManager heartManager;
+    [SerializeField] private GameObject cam;
     
 
     [Header("Shooting")]
@@ -40,6 +39,10 @@ public class PlayerController : MonoBehaviour
     private float movementSpeed;
 
     public PlayerController player;
+
+    private GameObject[] players;
+
+    private GameObject[] cameras;
 
     private PlayerState currentState;
     private Rigidbody2D rbPlayer;
@@ -67,11 +70,13 @@ public class PlayerController : MonoBehaviour
         currentHealth = playerData.maxHealth;
         movementSpeed = playerData.maxSpeed;
         currentState = PlayerState.move;
-        transform.position = startingPosition.initialValue;
         rbPlayer = GetComponent<Rigidbody2D>();
         animPlayer = GetComponent<Animator>();
         playerSprite = GetComponent<SpriteRenderer>();
         isDead = false;
+
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(cam);
     }
 
     private void Update()
@@ -341,6 +346,24 @@ public class PlayerController : MonoBehaviour
         }
         else
             rbPlayer.MovePosition(transform.position + direction * dashAmount * Time.deltaTime);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        FindStartPos();
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length > 1)
+            Destroy(players[1]);
+
+        cameras = GameObject.FindGameObjectsWithTag("Cameras");
+        if (cameras.Length > 1)
+            Destroy(cameras[1]);
+    }
+
+    private void FindStartPos()
+    {
+        transform.position = GameObject.FindWithTag("StartPos").transform.position;
     }
 
 }

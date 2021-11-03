@@ -11,6 +11,8 @@ TagManager:
   - Heart
   - HeartUp
   - NPC
+  - StartPos
+  - Cameras
   layers:
   - Default
   - TransparentFX
