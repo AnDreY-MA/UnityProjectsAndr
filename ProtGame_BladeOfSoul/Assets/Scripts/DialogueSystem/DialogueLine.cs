@@ -34,7 +34,7 @@ public class DialogueLine : DialogueBaseClass
                 textHolder.text = input;
             }
             else
-                finished = true;
+                Finished = true;
         }
     }
 
@@ -42,6 +42,6 @@ public class DialogueLine : DialogueBaseClass
     {
         textHolder = GetComponent<Text>();
         textHolder.text = "";
-        finished = false;
+        Finished = false;
     }
 }

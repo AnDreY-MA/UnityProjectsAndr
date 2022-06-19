@@ -22,11 +22,6 @@ public class NPC : MonoBehaviour
     [Header("DialogueSystem")]
     [SerializeField] private GameObject dialogueObject;
 
-    private Transform currentGoal;
-
-    private Rigidbody2D rbNPC;
-
-    private float currentSpeed;
     private float waitTime;
 
     private bool canMove;
@@ -34,9 +29,7 @@ public class NPC : MonoBehaviour
     private void Start()
     {
         canMove = true;
-        currentSpeed = speed;
         waitTime = startWaitTime;
-        rbNPC = GetComponent<Rigidbody2D>();
 
         moveSpot.position = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
@@ -50,7 +43,6 @@ public class NPC : MonoBehaviour
 
     public bool DialogueActive() { return dialogueObject.activeInHierarchy; }     
 
-    #region Patrol 
     private void ProtPatrol()
     {
         if (canMove)
@@ -73,23 +65,6 @@ public class NPC : MonoBehaviour
                 waitTime -= Time.deltaTime;
         }
     }
-
-    
-
-    private void ChangeGoal()
-    {
-        if (currentPoint == path.Length - 1)
-        {
-            currentPoint = 0;
-            currentGoal = path[0];
-        }
-        else
-        {
-            currentPoint++;
-            currentGoal = path[currentPoint];
-        }
-    }
-    #endregion
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee2269f66ae66049b5ab6b43263a4f9, type: 3}
   m_Name: Data_Player
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   maxSpeed: 6

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DialogueBaseClass : MonoBehaviour
 {
-    public bool finished { get; protected set; }
+    public bool Finished { get; protected set; }
 
     protected IEnumerator WriteText(string input, Text textHolder, Color textColor, Font textFont,
                                     float delay, AudioClip sound, float delayBetweenLines)
@@ -19,7 +19,7 @@ public class DialogueBaseClass : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
 
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        finished = true;
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.C));
+        Finished = true;
     }
 }

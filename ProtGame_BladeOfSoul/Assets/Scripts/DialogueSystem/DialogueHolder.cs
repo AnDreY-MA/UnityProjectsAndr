@@ -30,7 +30,7 @@ public class DialogueHolder : MonoBehaviour
             {
                 Deactivate();
                 transform.GetChild(i).gameObject.SetActive(true);
-                yield return new WaitUntil(() => transform.GetChild(i).GetComponent<DialogueLine>().finished);
+                yield return new WaitUntil(() => transform.GetChild(i).GetComponent<DialogueLine>().Finished);
             }
         }
         else
@@ -38,7 +38,7 @@ public class DialogueHolder : MonoBehaviour
             int index = transform.childCount - 1;
             Deactivate();
             transform.GetChild(index).gameObject.SetActive(true);
-            yield return new WaitUntil(() => transform.GetChild(index).GetComponent<DialogueLine>().finished);
+            yield return new WaitUntil(() => transform.GetChild(index).GetComponent<DialogueLine>().Finished);
         }
 
         dialogueFinished = true;

@@ -115,13 +115,11 @@ public class PlayerController : MonoBehaviour
   
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "NPC")
+        if(collision.TryGetComponent<NPC>(out NPC npc))
         {
-            npc = collision.gameObject.GetComponent<NPC>();
-
             if (Input.GetKey(KeyCode.F))
             {
-                npc.GetComponent<NPC>().ActivateDialogue();
+                npc.ActivateDialogue();
                 movementSpeed = 0;
             }
             else
